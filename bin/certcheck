@@ -6,7 +6,7 @@ require 'choice'
 require 'certcheck'
 
 Choice.options do
-    header 'Usage: check-cert --domains example.com [foo.example.com <...>]'
+    banner 'Usage: checkcert --domains example.com [foo.example.com <...>]'
 
     option :domains, :required => true do
         long '--domains *DOMAINS'
