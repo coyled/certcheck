@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.join(File.dirname(__FILE__), '../lib')
+
+require 'choice'
+require 'net/http'
+require 'certcheck'
+
+Choice.options do
+    header 'Usage: check-cert --domains example.com [foo.example.com <...>]'
+
+    option :domains, :required => true do
+        long '--domains *DOMAINS'
+        short '-d'
+        desc 'domain(s)'
+    end
+
+    option :help do
+        long '--help'
+        short '-h'
+        desc 'Show this message'
+    end
+end
+
+Choice[:domains].each do |domain|
+    check = CertCheck::Check.new(
+        :domain => domain
+    )
+    days_to_expiration = check.run
+
+    puts domain + ',' + days_to_expiration.to_s
+end
