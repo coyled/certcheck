@@ -7,13 +7,17 @@ module CertCheck
         end
 
         def run(params = {})
-            Net::HTTP.start(domain, 443, :use_ssl => true) do |http|
-                expiration = http.peer_cert.not_after
-                now = Time.now
+            begin
+                Net::HTTP.start(domain, 443, :use_ssl => true) do |http|
+                    expiration = http.peer_cert.not_after
+                    now = Time.now
 
-                expiration_days_away = ((expiration - now) / 86400).round(2)
+                    expiration_days_away = ((expiration - now) / 86400).round(2)
 
-                return expiration_days_away
+                    return expiration_days_away
+                end
+            rescue SocketError, OpenSSL::SSL::SSLError => error
+                puts "ERROR: " + error.to_s
             end
         end
     end

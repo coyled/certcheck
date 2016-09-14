@@ -28,5 +28,7 @@ Choice[:domains].each do |domain|
     )
     days_to_expiration = check.run
 
-    puts domain + ',' + days_to_expiration.to_s
+    if days_to_expiration
+        puts domain + ',' + days_to_expiration.to_s
+    end
 end
