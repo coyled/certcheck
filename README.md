@@ -17,6 +17,7 @@ Usage
 ```
     % git clone https://github.com/coyled/certcheck.git
     % cd certcheck
+    % bundle install
     % bin/certcheck 
     Usage: checkcert --domains example.com [foo.example.com <...>]
         -d, --domains *DOMAINS           domain(s)
