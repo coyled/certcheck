@@ -23,6 +23,6 @@ Usage
         -d, --domains *DOMAINS           domain(s)
         -h, --help                       Show this message
     % bin/certcheck -d coyled.com
-    coyled.com,79.38
+    coyled.com 79.38
     % 
 ```
