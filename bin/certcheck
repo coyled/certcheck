@@ -26,9 +26,9 @@ Choice[:domains].each do |domain|
     check = CertCheck::Check.new(
         :domain => domain
     )
-    days_to_expiration = check.run
 
-    if days_to_expiration
-        puts domain + ' ' + days_to_expiration.to_s
-    end
+    days_remaining = ((check.expiration_date - Time.now) / 86400).round(2)
+
+    puts "#{domain} expires in #{days_remaining} days " +
+        "(on #{check.expiration_date})"
 end
